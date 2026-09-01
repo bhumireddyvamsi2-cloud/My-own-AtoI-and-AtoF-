@@ -1,0 +1,83 @@
+#include<stdio.h>
+   int my_atoi(char *);
+   double my_atof(char *);
+   int main( int argv, char **argc)
+   {
+           int c=0,i;
+          if(argv!=2)
+           {
+                   printf("usage:./a.out  num\n");
+                  return 1;
+          }
+          for(i=0;argc[1][i];i++)
+          {
+                  if(argc[1][i]=='.')
+                  {
+                         c++;
+                          break;
+                  }
+          }
+          if(c==1)
+                  printf("%f\n",my_atof(argc[1]));
+          else
+                  printf("%d\n",my_atoi(argc[1]));
+          return 0;
+ 
+
+  }
+ 
+  int my_atoi(char s[])
+  {
+          int i=0,add=0,sign=1;
+          if(s[i]=='-')
+          {
+                  sign=-1;
+                  i=1;
+          }
+          for(;s[i];i++)
+          {
+                  if(s[i]>='0' && s[i]<='9')
+                          add=add*10+(s[i]-'0');
+                  else
+                          break;
+          }
+          return sign*add;
+  }
+  double my_atof(char s[])
+  {
+          int i=0,c=0;
+          double  add=0,p=0.1,sign=1;
+          if(s[i]=='-')
+          {
+                  sign=-1;
+                  i=1;
+          }
+ for(;s[i];i++)
+          {
+                  if(s[i]=='.')
+                  {
+                          i++;
+                          break;
+                  }
+                 else if(s[i]>='0'&&s[i]<='9')
+                          add=add*10+(s[i]-'0');
+                  else
+                  {
+                         c++;
+                          break;
+                  }
+          }
+          if(c==0)
+ 
+                  for(;s[i];i++)
+                  {
+                          if(s[i]>='0'&&s[i]<='9')
+                          {
+                                 add=add+(s[i]-'0')*p;
+                                 p=p/10;
+                          }
+                         else
+                                 break;
+                  }
+         return sign*add;
+  }
